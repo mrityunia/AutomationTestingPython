@@ -1,0 +1,2 @@
+JenkinSpec2.Feature.Spec1Feature.VerifyThatJenkinsIsConfiguredWithSpceflow
+JenkinSpec2.Feature.Spec1Feature.VerifyThatJenkinsNotIsConfiguredWithSpceflow
