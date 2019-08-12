@@ -53,7 +53,7 @@ def step_impl(context):
 	assert page.get_page_title() in "Login - My Store"
 
 
-@then(u'the user getts success message')
+@then(u'the user gets success message')
 def step_impl(context):
-	print("Success")
-	pass
+	page = Login(context)
+	assert page.get_loginSuccess_message() in ('Authentication failed.')

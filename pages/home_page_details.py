@@ -4,23 +4,27 @@
 
 # To Do ::-
 import sys
+import time
 
 from pages.base_page_details import *
 from selenium.webdriver.common.by import By
+from utility.webdriver_element_helper import *
+
 
 class HomePage(BasePage):
 
-	def __init__(self,context):
+	def __init__(self, context):
 		BasePage.__init__(
 			self,
 			context.Browser,
 		)
 
-	locator_dictionary={
-			'sign_option':(By.CSS_SELECTOR,'#header > div.nav > div > div > nav > div.header_user_info > a')
+	locator_dictionary = {
+		'sign_option': (By.CSS_SELECTOR, '#header > div.nav > div > div > nav > div.header_user_info > a')
 
-		}
-	def open_home_page(self,url):
+	}
+
+	def open_home_page(self, url):
 		self.Browser.get(url)
 
 	def get_homepage_title(self):
@@ -32,7 +36,7 @@ class HomePage(BasePage):
 
 
 class Login(BasePage):
-	def __init__(self,context):
+	def __init__(self, context):
 		BasePage.__init__(
 			self,
 			context.Browser
@@ -41,21 +45,35 @@ class Login(BasePage):
 	locator_dictionary = {
 		"email_id": (By.ID, 'email'),
 		"password": (By.ID, 'passwd'),
-		"signin_button": (By.ID, 'SubmitLogin')
+		"signin_button": (By.ID, 'SubmitLogin'),
+		"login_succ_msg": (By.CSS_SELECTOR, '#center_column > div.alert.alert-danger > ol > li')
+
 	}
 
-	def login_success(self,email_id,passwrd):
+	def login_success(self, email_id, passwrd):
 		try:
-			print("User login id "+str(email_id),end='')
-			print("User password "+str(passwrd),end='')
+			print("User login id " + str(email_id), end='')
+			print("User password " + str(passwrd), end='')
 			self.Browser.find_element(*self.locator_dictionary['email_id']).send_keys(str(email_id))
 			self.Browser.find_element(*self.locator_dictionary['password']).send_keys(str(passwrd))
-			self.Browser.click(*self.locator_dictionary['signin_button'])
+			self.Browser.find_element(*self.locator_dictionary['signin_button']).click()
 			print("login Success")
-
 		except Exception as e:
 			e = sys.exc_info()[0]
-			print("Some error occured at login "+str(e))
+			print("Some error occured at login " + str(e))
 		return None
+
 	def get_page_title(self):
 		return self.Browser.title
+
+	def get_loginSuccess_message(self):
+		try:
+			if explicit_wait(self.Browser, self.locator_dictionary['login_succ_msg'], time=11):
+				login_message = self.Browser.find_element(*self.locator_dictionary['login_succ_msg']).text
+				print("Login message " + str(login_message))
+				return login_message
+			return None
+		except Exception as e:
+			e = sys.exc_info()
+			print("Login error message " + str(e))
+			return None
