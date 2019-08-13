@@ -9,7 +9,7 @@ import time
 from pages.base_page_details import *
 from selenium.webdriver.common.by import By
 from utility.webdriver_element_helper import *
-
+from utility.logger_report_details import *
 
 class HomePage(BasePage):
 
@@ -52,6 +52,11 @@ class Login(BasePage):
 
 	def login_success(self, email_id, passwrd):
 		try:
+			start_logger()
+			start_logger()
+			start_logger()
+			start_logger()
+			start_logger()
 			print("User login id " + str(email_id), end='')
 			print("User password " + str(passwrd), end='')
 			self.Browser.find_element(*self.locator_dictionary['email_id']).send_keys(str(email_id))

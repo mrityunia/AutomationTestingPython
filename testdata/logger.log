@@ -1,0 +1,8 @@
+2019-08-13 17:23:25,803: DEBUG: format 'the user opens browser' -> 'the user opens browser'
+2019-08-13 17:23:25,804: DEBUG: format 'the user navigates to url "{URL}"' -> 'the user navigates to url "(?P<URL>.+?)"'
+2019-08-13 17:23:25,804: DEBUG: format 'the user clicks on Signin' -> 'the user clicks on Signin'
+2019-08-13 17:23:25,804: DEBUG: format 'the user enters user id "{userid}" passwod "{password}"' -> 'the user enters user id "(?P<userid>.+?)" passwod "(?P<password>.+?)"'
+2019-08-13 17:23:25,804: DEBUG: format 'the user clicks on sigin button' -> 'the user clicks on sigin button'
+2019-08-13 17:23:25,805: DEBUG: format '"{title}" is opend' -> '"(?P<title>.+?)" is opend'
+2019-08-13 17:23:25,805: DEBUG: format 'Sign in page is opned' -> 'Sign in page is opned'
+2019-08-13 17:23:25,813: DEBUG: format 'the user gets success message' -> 'the user gets success message'
